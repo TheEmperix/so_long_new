@@ -6,84 +6,80 @@
 /*   By: woberon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 11:19:04 by woberon           #+#    #+#             */
-/*   Updated: 2022/03/09 18:25:13 by woberon          ###   ########.fr       */
+/*   Updated: 2022/03/13 20:52:55 by woberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	move(int keycode, t_game *vars)
+void	move_bonus(int keycode, t_game *game)
 {
-	char	*score;
-
-	if (keycode == W)
-		vars->pos_player.y -= 1;
-	if (keycode == S)
-		vars->pos_player.y += 1;
-	if (keycode == A)
-		vars->pos_player.x -= 1;
-	if (keycode == D)
-		vars->pos_player.x += 1;
-	write(1, "moves: ", 8);
-	ft_putnbr(vars->score);
+	if (keycode == 13 || keycode == 126)
+		game->pos_player.y -= 1;
+	if (keycode == 1 || keycode == 125)
+		game->pos_player.y += 1;
+	if (keycode == 0 || keycode == 123)
+		game->pos_player.x -= 1;
+	if (keycode == 2 || keycode == 124)
+		game->pos_player.x += 1;
+	write(1, "Moves: ", 8);
+	ft_putnbr_bonus(game->score);
 	write(1, "\n", 1);
-	score = ft_itoa(vars->score);
-	mlx_string_put(vars->mlx, vars->win, 10, 10, 1, score);
-	free(score);
 }
 
-void	finish_game(t_game *vars)
+void	finish_game_bonus(t_game *game)
 {
-	if (vars->file_map[vars->pos_player.y][vars->pos_player.x] == 'e')
+	if (game->file_map[game->pos_player.y][game->pos_player.x] == 'e')
 	{
-		ft_putstr("you won !\n");
+		ft_putstr_bonus("You win !\n");
 		exit(0);
 	}
-	if (vars->file_map[vars->pos_player.y][vars->pos_player.x] == 'A')
+	if (game->file_map[game->pos_player.y][game->pos_player.x] == 'A')
 	{
-		ft_putstr("game is over!\n");
+		ft_putstr_bonus("Game Over!\n");
 		exit(0);
 	}
 }
 
-void	redraw(t_game *vars)
+void	game_bonus(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (vars->file_map[i])
+	while (game->file_map[i])
 	{
 		j = 0;
-		while (vars->file_map[i][j])
+		while (game->file_map[i][j])
 		{
-			if (vars->file_map[i][j] == 'P')
+			if (game->file_map[i][j] == 'P')
 			{
-				vars->file_map[i][j] = '0';
+				game->file_map[i][j] = '0';
 			}
-			if (i == vars->pos_player.y && j == vars->pos_player.x)
-				vars->file_map[i][j] = 'P';
-			if (vars->chr.collect == 0 && vars->file_map[i][j] == 'E')
-				vars->file_map[i][j] = 'e';
-			finish_game(vars);
+			if (i == game->pos_player.y && j == game->pos_player.x)
+				game->file_map[i][j] = 'P';
+			if (game->chr.collect == 0 && game->file_map[i][j] == 'E')
+				game->file_map[i][j] = 'e';
+			finish_game_bonus(game);
 			j++;
 		}
 		i++;
 	}
 }
 
-int	player_moves(int keycode, t_game **vars)
+int	player_moves_bonus(int keycode, t_game **game)
 {
 	if (keycode == 53)
 		exit(0);
-	move(keycode, *vars);
-	if ((*vars)->file_map[(*vars)->pos_player.y][(*vars)->pos_player.x] !=
+	move_bonus(keycode, *game);
+	if ((*game)->file_map[(*game)->pos_player.y][(*game)->pos_player.x] !=
 		'1' &&
-		(*vars)->file_map[(*vars)->pos_player.y][(*vars)->pos_player.x] != 'E')
+		(*game)->file_map[(*game)->pos_player.y][(*game)->pos_player.x] !=
+		'E')
 	{
-		redraw(*vars);
-		(*vars)->score += 1;
+		game_bonus(*game);
+		(*game)->score += 1;
 	}
-	map((*vars)->file_map, *vars);
+	map_bonus((*game)->file_map, *game);
 	return (0);
 }

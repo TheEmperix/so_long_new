@@ -12,7 +12,7 @@
 
 #include "so_long_bonus.h"
 
-void	ft_putnbr(int n)
+void	ft_putnbr_bonus(int n)
 {
 	char	c;
 
@@ -33,25 +33,25 @@ void	ft_putnbr(int n)
 	}
 	else
 	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
+		ft_putnbr_bonus(n / 10);
+		ft_putnbr_bonus(n % 10);
 	}
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr_bonus(char *str)
 {
 	while (*str)
 		write(1, str++, 1);
 }
 
-int	fd_open(char *path)
+int	fd_open_bonus(char *path)
 {
 	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		write(1, "fd no valid !\n", 14);
+		write(1, "Fd no valid \n", 14);
 		exit (0);
 	}
 	return (fd);

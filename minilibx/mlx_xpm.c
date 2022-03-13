@@ -1,4 +1,4 @@
-// mlx xpm
+// mlx texture
 // by ol
 
 #include <OpenGL/gl3.h>

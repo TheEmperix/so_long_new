@@ -37,7 +37,7 @@ void	check_size_map2(char *line, int j, int fd, t_game *vars)
 	vars->win_draw.y = j;
 }
 
-void	check_chr(char *path)
+void	check_chr_bonus(char *path)
 {
 	int		fd;
 	int		i;

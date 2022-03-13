@@ -28,28 +28,28 @@ void	draw(char *path, t_game *vars)
 void	draw_map(char map, t_game *vars, int i, int j)
 {
 	if (map == '1')
-		draw("./xpm/water.xpm", vars);
+		draw("./texture/water.texture", vars);
 	else if (map == '0')
-		draw("./xpm/ground.xpm", vars);
+		draw("./texture/ground.texture", vars);
 	else if (map == 'C')
 	{
-		draw("./xpm/potion.xpm", vars);
+		draw("./texture/potion.texture", vars);
 		vars->chr.collect += 1;
 	}
 	else if (map == 'E')
 	{
-		draw("./xpm/door_close.xpm", vars);
+		draw("./texture/door_close.texture", vars);
 	}
 	else if (map == 'e')
-		draw("./xpm/door_open.xpm", vars);
+		draw("./texture/door_open.texture", vars);
 	else if (map == 'P')
 	{
 		vars->pos_player.x = j;
 		vars->pos_player.y = i;
-		draw("./xpm/player.xpm", vars);
+		draw("./texture/player.texture", vars);
 	}
 	else if (map == 'A')
-		draw("./xpm/alien.xpm", vars);
+		draw("./texture/alien.texture", vars);
 }
 
 void	map(char	**file_map, t_game	*vars)

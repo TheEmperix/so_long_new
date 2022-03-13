@@ -34,27 +34,25 @@ typedef struct s_game {
 	int			score;
 }	t_game;
 
-void	check_chr(char *path);
-void	check_size_map(char *path, t_game **vars);
-void	check_size_map2(char *line, int j, int fd, t_game *vars);
-void	read_map(char *path, t_game *vars);
-void	map(char **file_map, t_game *vars);
-void	map2(char **file_map, t_game *vars);
-int		player_moves(int keycode, t_game **vars);
-void	search_chr(t_game *vars);
-int		fd_open(char *path);
-void	check_pec(t_game *vars);
-void	valid_waterh(t_game *vars);
-void	valid_waterv(t_game *vars);
-void	ft_putchar(char c);
-void	ft_putnbr(int n);
-void	ft_putstr(char *str);
-char	*ft_itoa(int n);
-void	draw_potion(t_game *vars);
-void	draw(char *path, t_game *vars);
-void	draw_alien(t_game *vars);
-void	draw_player(t_game *vars, int i, int j);
-void	move(int keycode, t_game *vars);
-//void	draw_score(t_game *vars);
+void	check_chr_bonus(char *path);
+void	check_size_map_bonus(char *path, t_game **game);
+void	check_size_map2_bonus(char *line, int j, int fd, t_game *game);
+void	read_map_bonus(char *path, t_game *game);
+void	map_bonus(char **file_map, t_game *game);
+void	map2_bonus(char **file_map, t_game *game);
+int		player_moves_bonus(int keycode, t_game **game);
+void	search_chr_bonus(t_game *game);
+int		fd_open_bonus(char *path);
+void	check_pec_bonus(t_game *game);
+void	valid_waterh_bonus(t_game *game);
+void	valid_waterv_bonus(t_game *game);
+void	ft_putnbr_bonus(int n);
+void	ft_putstr_bonus(char *str);
+char	*ft_itoa_bonus(int n);
+void	draw_potion_bonus(t_game *game);
+void	draw_bonus(char *path, t_game *game);
+void	draw_alien_bonus(t_game *game);
+void	draw_player_bonus(t_game *game, int i, int j);
+void	move_bonus(int keycode, t_game *game);
 
 #endif
