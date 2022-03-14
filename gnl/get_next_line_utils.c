@@ -6,7 +6,7 @@
 /*   By: woberon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:05:02 by woberon           #+#    #+#             */
-/*   Updated: 2021/12/18 18:05:04 by woberon          ###   ########.fr       */
+/*   Updated: 2022/03/14 16:27:15 by woberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_read(int fd, char *buff, int *i)
 {
 	int	c;
 
-	c = read(fd, buff, BUFFER_SIZE);
+	c = (int)read(fd, buff, BUFFER_SIZE);
 	if (c <= 0)
 		return (0);
 	*i = 0;

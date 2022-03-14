@@ -80,6 +80,6 @@ int	player_moves_bonus(int keycode, t_game **game)
 		game_bonus(*game);
 		(*game)->score += 1;
 	}
-	map_bonus((*game)->file_map, *game);
+	counter_bonus((*game)->file_map, *game);
 	return (0);
 }

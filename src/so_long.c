@@ -18,13 +18,6 @@ int	ft_close(int key)
 	exit(0);
 }
 
-void	arg_read(char *map)
-{
-	while (*map)
-		write(1, map++, 1);
-	write(1, "\n", 1);
-}
-
 void	ft_extension(char *path)
 {
 	int	i;
@@ -36,7 +29,9 @@ void	ft_extension(char *path)
 	path[i - 4] == '.' && path[i -5] >= 48))
 	{
 		write(1, "check you path! -> ", 19);
-		arg_read(path);
+		while (*path)
+			write(1, path++, 1);
+		write(1, "\n", 1);
 		exit(0);
 	}
 }

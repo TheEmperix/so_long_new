@@ -47,16 +47,16 @@ typedef struct s_game {
 }	t_game;
 
 void	check_chr(char *path);
-void	check_size_map(char *path, t_game **vars);
-void	check_size_map2(char *line, int j, int fd, t_game *vars);
-void	read_map(char *path, t_game *vars);
-void	map(char **file_map, t_game *vars);
-int		player_moves(int keycode, t_game **vars);
-void	search_chr(t_game *vars);
+void	check_size_map(char *path, t_game **game);
+void	check_size_map2(char *line, int j, int fd, t_game *game);
+void	read_map(char *path, t_game *game);
+void	map(char **file_map, t_game *game);
+int		player_moves(int keycode, t_game **game);
+void	search_chr(t_game *game);
 int		fd_open(char *path);
-void	check_pec(t_game *vars);
-void	valid_waterh(t_game *vars);
-void	valid_waterv(t_game *vars);
+void	check_pec(t_game *game);
+void	valid_waterh(t_game *game);
+void	valid_waterv(t_game *game);
 void	ft_putchar(char c);
 void	ft_putnbr(int n);
 void	ft_putstr(char *str);

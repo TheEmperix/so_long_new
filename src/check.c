@@ -6,13 +6,13 @@
 /*   By: woberon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 11:18:27 by woberon           #+#    #+#             */
-/*   Updated: 2022/03/09 11:20:19 by woberon          ###   ########.fr       */
+/*   Updated: 2022/03/14 16:20:34 by woberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_size_map2(char *line, int j, int fd, t_game *vars)
+void	check_size_map2(char *line, int j, int fd, t_game *game)
 {
 	int	length;
 
@@ -24,7 +24,7 @@ void	check_size_map2(char *line, int j, int fd, t_game *vars)
 				length = ft_strlen(line) - 1;
 			else
 				length = ft_strlen(line);
-			if (vars->win_draw.x != length)
+			if (game->win_draw.x != length)
 			{
 				write(1, "check line length!\n", 19);
 				exit(0);
@@ -34,10 +34,10 @@ void	check_size_map2(char *line, int j, int fd, t_game *vars)
 		}
 		j++;
 	}
-	vars->win_draw.y = j;
+	game->win_draw.y = j;
 }
 
-void	check_chr_bonus(char *path)
+void	check_chr(char *path)
 {
 	int		fd;
 	int		i;
@@ -65,41 +65,41 @@ void	check_chr_bonus(char *path)
 	}
 }
 
-void	check_size_map(char *path, t_game **vars)
+void	check_size_map(char *path, t_game **game)
 {
 	int		fd;
 	char	*line;
 	int		j;
 
-	*vars = malloc(sizeof(t_game));
+	*game = malloc(sizeof(t_game));
 	line = NULL;
 	fd = fd_open(path);
 	j = 0;
 	line = get_next_line(fd);
-	(*vars)->win_draw.x = ft_strlen(line) - 1;
-	check_size_map2(line, j, fd, *vars);
+	(*game)->win_draw.x = ft_strlen(line) - 1;
+	check_size_map2(line, j, fd, *game);
 	free(line);
 }
 
-void	read_map(char *path, t_game *vars)
+void	read_map(char *path, t_game *game)
 {
 	int	fd;
 	int	i;
 
-	vars->score = 0;
+	game->score = 0;
 	i = 0;
-	vars->file_map = NULL;
-	vars->file_map = malloc(sizeof(t_game) * vars->win_draw.y);
+	game->file_map = NULL;
+	game->file_map = malloc(sizeof(t_game) * game->win_draw.y);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		exit(0);
-	vars->file_map[i] = get_next_line(fd);
-	while (vars->file_map[i])
+	game->file_map[i] = get_next_line(fd);
+	while (game->file_map[i])
 	{
 		i++;
-		vars->file_map[i] = get_next_line(fd);
+		game->file_map[i] = get_next_line(fd);
 	}
-	vars->chr.player = 0;
-	vars->chr.exit = 0;
-	search_chr(vars);
+	game->chr.player = 0;
+	game->chr.exit = 0;
+	search_chr(game);
 }

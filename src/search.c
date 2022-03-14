@@ -6,66 +6,66 @@
 /*   By: woberon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 11:19:11 by woberon           #+#    #+#             */
-/*   Updated: 2022/03/09 11:19:13 by woberon          ###   ########.fr       */
+/*   Updated: 2022/03/14 16:23:30 by woberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	search_chr(t_game *vars)
+void	search_chr(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (vars->file_map[i])
+	while (game->file_map[i])
 	{
 		j = 0;
-		while (vars->file_map[i][j])
+		while (game->file_map[i][j])
 		{
-			if (vars->file_map[i][j] == 'P')
-				vars->chr.player += 1;
-			if (vars->file_map[i][j] == 'E')
-				vars->chr.exit += 1;
-			if (vars->file_map[i][j] == 'C')
-				vars->chr.collect += 1;
+			if (game->file_map[i][j] == 'P')
+				game->chr.player += 1;
+			if (game->file_map[i][j] == 'E')
+				game->chr.exit += 1;
+			if (game->file_map[i][j] == 'C')
+				game->chr.collect += 1;
 			j++;
 		}
 		i++;
 	}
-	check_pec(vars);
+	check_pec(game);
 }
 
-void	check_pec(t_game *vars)
+void	check_pec(t_game *game)
 {
-	if (vars->chr.exit <= 0 || vars->chr.collect <= 0)
+	if (game->chr.exit <= 0 || game->chr.collect <= 0)
 	{
 		write(1, "\ncheck you chr\n", 15);
 		exit(0);
 	}
-	if (vars->chr.player != 1)
+	if (game->chr.player != 1)
 	{
 		write(1, "\ncheck you start position\n", 27);
 		exit(0);
 	}
 	write(1, "\n", 1);
-	valid_waterh(vars);
+	valid_waterh(game);
 }
 
-void	valid_waterh(t_game *vars)
+void	valid_waterh(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (vars->file_map[i])
+	while (game->file_map[i])
 	{
 		j = 0;
-		while (vars->file_map[i][j] != '\n' && \
-		vars->file_map[i][j] != 0)
+		while (game->file_map[i][j] != '\n' && \
+		game->file_map[i][j] != 0)
 		{
-			if (vars->file_map[0][j] != '1' || \
-			vars->file_map[vars->win_draw.y - 1][j] != '1')
+			if (game->file_map[0][j] != '1' || \
+			game->file_map[game->win_draw.y - 1][j] != '1')
 			{
 				ft_putstr("wall is not valid\n");
 				exit(0);
@@ -74,26 +74,26 @@ void	valid_waterh(t_game *vars)
 		}
 		i++;
 	}
-	valid_waterv(vars);
+	valid_waterv(game);
 }
 
-void	valid_waterv(t_game *vars)
+void	valid_waterv(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (vars->file_map[i])
+	while (game->file_map[i])
 	{
 		j = 0;
-		while (vars->file_map[i][j])
+		while (game->file_map[i][j])
 		{
-			if (vars->file_map[i][vars->win_draw.x - 1] != '1')
+			if (game->file_map[i][game->win_draw.x - 1] != '1')
 			{
 				ft_putstr("wall is not valid\n");
 				exit(0);
 			}
-			if (vars->file_map[i][0] != '1')
+			if (game->file_map[i][0] != '1')
 			{
 				ft_putstr("wall is not valid\n");
 				exit(0);

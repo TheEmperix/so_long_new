@@ -72,7 +72,7 @@ void	map2_bonus(char	**file_map, t_game	*game)
 	}
 }
 
-void	map_bonus(char **file_map, t_game *game)
+void	counter_bonus(char **file_map, t_game *game)
 {
 	char	*str;
 	char	*score;
