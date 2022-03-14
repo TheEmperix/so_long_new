@@ -12,11 +12,11 @@
 
 #include "so_long_bonus.h"
 
-void	draw_potion_bonus(t_game *game)
+void	draw_potion_bonus(t_game **game)
 {
 	static int	time;
 
-	game->chr.collect += 1;
+	(*game)->chr.collect += 1;
 	if (time == 0)
 	{
 		draw_bonus("./texture/potion1.xpm", game);
@@ -30,7 +30,7 @@ void	draw_potion_bonus(t_game *game)
 		time = 0;
 }
 
-void	draw_alien_bonus(t_game *game)
+void	draw_alien_bonus(t_game **game)
 {
 	static int	time;
 
@@ -47,12 +47,12 @@ void	draw_alien_bonus(t_game *game)
 		time = 0;
 }
 
-void	draw_player_bonus(t_game *game, int i, int j)
+void	draw_player_bonus(t_game **game, int i, int j)
 {
 	static int	time;
 
-	game->pos_player.x = j;
-	game->pos_player.y = i;
+	(*game)->pos_player.x = j;
+	(*game)->pos_player.y = i;
 	if (time == 0)
 		draw_bonus("./texture/player1.xpm", game);
 	else if (time == 1)
