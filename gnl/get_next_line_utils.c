@@ -6,97 +6,88 @@
 /*   By: woberon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:05:02 by woberon           #+#    #+#             */
-/*   Updated: 2022/03/14 16:27:15 by woberon          ###   ########.fr       */
+/*   Updated: 2022/06/24 13:35:40 by woberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *s)
+size_t	ft_strlen(const char *str)
 {
 	int	i;
 
-	if (!s)
+	if (!str)
 		return (0);
 	i = 0;
-	while (s[i] != '\0')
+	while (str[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char *str1, char *str2)
 {
-	char	*k;
+	char	*str;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	k = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!k)
+	if (!str1 || !str2)
 		return (NULL);
-	while (s1[i])
-		k[j++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		k[j++] = s2[i++];
-	k[j] = '\0';
-	return (k);
+	str = malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
+	if (!str)
+		return (NULL);
+	while (str1[i])
+	{
+		str[i] = str1[i];
+		i++;
+	}
+	while (str2[j])
+	{
+		str[i + j] = str2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	free(str1);
+	return (str);
 }
 
-int	check_next_line(char *line)
+char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
 
-	if (!line)
-		return (0);
 	i = 0;
-	while (line[i])
+	while (s[i])
+		i++;
+	while (i != 0)
+		if (s[i--] == (char)c)
+			return ((char *)s);
+	return (NULL);
+}
+
+char	*ft_strjoin2(char *str1, char *str2)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!str1 || !str2)
+		return (NULL);
+	str = malloc(sizeof(char) * (ft_strlen(str1) + ft_strlen(str2) + 1));
+	if (!str)
+		return (NULL);
+	while (str1[i])
 	{
-		if (line[i] == '\n')
-			return (0);
+		str[i] = str1[i];
 		i++;
 	}
-	return (1);
-}
-
-int	ft_read(int fd, char *buff, int *i)
-{
-	int	c;
-
-	c = (int)read(fd, buff, BUFFER_SIZE);
-	if (c <= 0)
-		return (0);
-	*i = 0;
-	buff[c] = '\0';
-	return (c);
-}
-
-char	*ft_check(const char *buff, int *i)
-{
-	int		j;
-	char	*line2;
-
-	j = *i;
-	while (buff[j] != '\0' && buff[j] != '\n')
-		j++;
-	if (buff[j] == '\n')
-		j++;
-	line2 = (char *)malloc(j - *i + 1);
-	if (!line2)
-		return (NULL);
-	j = 0;
-	while (buff[*i] != '\0' && buff[*i] != '\n')
+	while (str2[j])
 	{
-		line2[j] = buff[*i];
+		str[i + j] = str2[j];
 		j++;
-		(*i)++;
 	}
-	if (buff[*i] == '\n')
-	{
-		line2[j++] = '\n';
-		(*i)++;
-	}
-	line2[j] = '\0';
-	return (line2);
+	str[i + j] = '\0';
+	return (str);
 }

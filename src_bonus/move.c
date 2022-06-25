@@ -6,7 +6,7 @@
 /*   By: woberon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 11:19:04 by woberon           #+#    #+#             */
-/*   Updated: 2022/03/13 20:52:55 by woberon          ###   ########.fr       */
+/*   Updated: 2022/06/24 13:34:33 by woberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ int	player_moves_bonus(int keycode, t_game **game)
 		game_bonus(game);
 		(*game)->score += 1;
 	}
-	counter_bonus((*game)->file_map, game);
+	counter_bonus((*game)->file_map, *game);
 	return (0);
 }

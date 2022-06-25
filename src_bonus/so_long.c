@@ -6,7 +6,7 @@
 /*   By: woberon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 11:19:23 by woberon           #+#    #+#             */
-/*   Updated: 2022/03/14 20:38:32 by woberon          ###   ########.fr       */
+/*   Updated: 2022/06/24 13:30:51 by woberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 		game->win = mlx_new_window(game->mlx, game->win_draw.x * 50,
 				game->win_draw.y * 50, "so_long");
 		mlx_hook(game->win, 17, 0, ft_close_bonus, 0);
-		counter_bonus(game->file_map, &game);
+		counter_bonus(game->file_map, game);
 		mlx_key_hook(game->win, player_moves_bonus, &game);
 		mlx_loop(game->mlx);
 	}

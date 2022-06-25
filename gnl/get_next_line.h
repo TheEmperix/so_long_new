@@ -6,7 +6,7 @@
 /*   By: woberon <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:04:52 by woberon           #+#    #+#             */
-/*   Updated: 2021/12/18 18:04:55 by woberon          ###   ########.fr       */
+/*   Updated: 2022/06/24 14:11:03 by woberon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 # define GET_NEXT_LINE_H
 # define BUFFER_SIZE 150
 
-# include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
+# include <unistd.h>
 
-char		*ft_check(const char *buff, int *i);
-char		*get_next_line(int fd);
-int			ft_strlen(const char *s);
-char		*ft_strjoin(char *s1, char *s2);
-int			ft_read(int fd, char *buff, int *i);
-int			check_next_line(char *line);
+char	*get_next_line(int fd);
+size_t	ft_strlen(const char *str);
+char	*ft_strjoin(char *str1, char *str2);
+char	*ft_strrchr(const char *s, int c);
+
+char	*ft_strjoin2(char *str1, char *str2);
 
 #endif
